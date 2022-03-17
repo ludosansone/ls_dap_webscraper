@@ -10,6 +10,7 @@ def main():
         soup = extraction.get_soup(html)
         if soup:
             datas_dict = extraction.get_book_datas(soup)
+            result = loading.load_new_book(datas_dict)
             print(datas_dict['universal_product_code'])
             print(datas_dict['title'])
             print(datas_dict['price_including_tax'])
