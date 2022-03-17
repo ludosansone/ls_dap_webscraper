@@ -9,16 +9,17 @@ def main():
     if html:
         soup = extraction.get_soup(html)
         if soup:
-            brut_datas_dict = extraction.get_book_brut_datas(soup)
-            print(brut_datas_dict['upc'])
-            print(brut_datas_dict['book_title'])
-            print(brut_datas_dict['price_i'])
-            print(brut_datas_dict['price_e'])
-            print(brut_datas_dict['instock'])
-            print(brut_datas_dict['product_description'])
-            print(brut_datas_dict['category'])
-            print(brut_datas_dict['img_url'])
-            print(brut_datas_dict['rating'])
+            datas_dict = extraction.get_book_datas(soup)
+            print(datas_dict['universal_product_code'])
+            print(datas_dict['title'])
+            print(datas_dict['price_including_tax'])
+            print(datas_dict['price_excluding_tax'])
+            print(datas_dict['number_available'])
+            print(datas_dict['product_description'])
+            print(datas_dict['category'])
+            print(datas_dict['review_rating'])
+            print(datas_dict['image_url'])
+            
         else:
             print("Impossible de créer l'objet BeautifulSoup à partir de cette page HTML")
     else:

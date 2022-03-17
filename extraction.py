@@ -1,4 +1,4 @@
-import requests
+import requests, transformation
 from bs4 import BeautifulSoup as bs
 
 def get_page(url):
@@ -26,24 +26,29 @@ def get_soup(html_page):
         return False
 #
 
-def get_book_brut_datas(soup):
+def get_book_datas(soup):
     """
-        On extrait les données brutes à partir de l'objet BeautifulSoup placé en paramètre
+        On extrait les données à partir de l'objet BeautifulSoup placé en paramètre, en opérant une transformation si nécessaire
     """
 
-    brut_datas_dict = dict()
+    datas_dict = dict()
 
+    # Extraction brute, ou presque
     table_divisions = soup.find_all('td')
-    brut_datas_dict['category'] = soup.find_all('li')[2].text.strip()
-    brut_datas_dict['book_title'] = soup.h1.text
-    brut_datas_dict['product_description'] = soup.find_all('p')[3].text
-    brut_datas_dict['price_e'] = table_divisions[2].text.replace('Â£', '')
-    brut_datas_dict['price_i'] = table_divisions[3].text.replace('Â£', '')
-    brut_datas_dict['instock'] = table_divisions[5].text
-    brut_datas_dict['upc'] = table_divisions[0].text
-    img_url = "https://books.toscrape.com/" + soup.img['src']
-    brut_datas_dict['img_url'] = img_url.replace('/../..', '')
-    brut_datas_dict['rating'] = soup.find_all('p')[2]['class'][1]
+    datas_dict['universal_product_code'] = table_divisions[0].text
+    datas_dict['title'] = soup.h1.text
+    datas_dict['price_including_tax'] = table_divisions[3].text.replace('Â£', '')
+    datas_dict['price_excluding_tax'] = table_divisions[2].text.replace('Â£', '')
+    datas_dict['number_available'] = table_divisions[5].text
+    datas_dict['product_description'] = soup.find_all('p')[3].text
+    datas_dict['category'] = soup.find_all('li')[2].text.strip()
+    datas_dict['review_rating'] = soup.find_all('p')[2]['class'][1]
+    datas_dict['image_url'] = soup.img['src']
 
-    return brut_datas_dict
+    # Transformation si nécessaire
+    datas_dict['number_available'] = transformation.get_number_available(datas_dict['number_available'])
+    datas_dict['review_rating'] = transformation.get_star_number(datas_dict['review_rating'])
+    datas_dict['image_url'] = transformation.get_image_url(datas_dict['image_url'])
+
+    return datas_dict
 #
