@@ -19,9 +19,16 @@ def get_star_number(data):
     return rating_dict[data]
 #
 
-def get_image_url(data):
-    image_url = "https://books.toscrape.com/" + data
-    image_url = image_url.replace('/../..', '')
+def get_image_url(relative_url):
+    image_url = relative_url.replace('/../..', '')
+    image_url = "https://books.toscrape.com/" + relative_url
 
     return image_url
+#
+
+def get_book_url(relative_url):
+    url = relative_url.replace('../../../', '')
+    url = "https://books.toscrape.com/catalogue/" + url
+
+    return url
 #
