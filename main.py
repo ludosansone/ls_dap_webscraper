@@ -5,10 +5,11 @@ def main():
         Fonction Principale
     """
 
-    html_category = extraction.get_page("https://books.toscrape.com/catalogue/category/books/science_22/index.html")
+    url_category = "https://books.toscrape.com/catalogue/category/books/mystery_3/index.html"
+    html_category = extraction.get_page(url_category)
     if html_category:
         soup_category = extraction.get_soup(html_category)
-        url_list = extraction.get_urls_category(soup_category)
+        url_list = extraction.get_urls_category(soup_category, url_category)
         book_number = len(url_list)
         book_list = []
         print(str(book_number) + " livres en cours de récupération...")

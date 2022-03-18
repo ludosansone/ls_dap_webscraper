@@ -53,16 +53,25 @@ def get_book_datas(soup):
     return datas_dict
 #
 
-def get_urls_category(soup):
+def get_urls_category(soup, index_url):
     """
         On récupère toutes les URLs d'une catégorie
     """
 
-    relative_url_list = soup.find_all('h3')
+    has_a_next_page = True
+    root_url = index_url.replace('index.html', '')
     absolut_url_list = []
     
-    for relative_url in relative_url_list:
-        absolut_url = transformation.get_book_url(relative_url.a['href'])
-        absolut_url_list.append(absolut_url)
+    while has_a_next_page:
+        relative_url_list = soup.find_all('h3')
+        for relative_url in relative_url_list:
+            absolut_url = transformation.get_book_url(relative_url.a['href'])
+            absolut_url_list.append(absolut_url)
+        next_page_url = soup.find('li', class_ = "next")
+        if next_page_url != None:
+            html = get_page(root_url + next_page_url.a.get('href'))
+            soup = get_soup(html)
+        else:
+            has_a_next_page = False
     return absolut_url_list
 #
