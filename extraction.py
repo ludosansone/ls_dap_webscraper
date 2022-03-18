@@ -75,3 +75,14 @@ def get_urls_category(soup, index_url):
             has_a_next_page = False
     return absolut_url_list
 #
+
+def get_all_categories(soup):
+    side_categories = soup.find('div', class_ = 'side_categories').ul.li.ul
+    category_list = side_categories.find_all('li')
+    category_urls = []
+
+    for category in category_list:
+        category_url = transformation.get_category_url(category.a['href'])
+        category_urls.append(category_url)
+    return category_urls
+#

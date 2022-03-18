@@ -5,30 +5,35 @@ def main():
         Fonction Principale
     """
 
-    url_category = "https://books.toscrape.com/catalogue/category/books/sequential-art_5/index.html"
-    html_category = extraction.get_page(url_category)
-    if html_category:
-        soup_category = extraction.get_soup(html_category)
-        url_list = extraction.get_urls_category(soup_category, url_category)
-        book_number = len(url_list)
-        book_list = []
-        print(str(book_number) + " livres en cours de récupération...")
-        for url in url_list:
-            html_book = extraction.get_page(url)
-            if html_book:
-                soup_book = extraction.get_soup(html_book)
-                if soup_book:
-                    datas_dict = extraction.get_book_datas(soup_book)
-                    book_list.append(datas_dict)
-                    print(datas_dict['title'] + " récupéré...")
+    website_url = "https://books.toscrape.com/index.html"
+    html_website = extraction.get_page(website_url)
+    soup_website = extraction.get_soup(html_website)
+    category_urls = extraction.get_all_categories(soup_website)
+    print(str(len(category_urls)) + " catégories trouvées")
+    for category_url in category_urls:
+        html_category = extraction.get_page(category_url)
+        if html_category:
+            soup_category = extraction.get_soup(html_category)
+            url_list = extraction.get_urls_category(soup_category, category_url)
+            book_number = len(url_list)
+            book_list = []
+            print(str(book_number) + " livres en cours de récupération...")
+            for url in url_list:
+                html_book = extraction.get_page(url)
+                if html_book:
+                    soup_book = extraction.get_soup(html_book)
+                    if soup_book:
+                        datas_dict = extraction.get_book_datas(soup_book)
+                        book_list.append(datas_dict)
+                        print(datas_dict['title'] + " récupéré...")
+                    else:
+                        print("Impossible de créer l'objet BeautifulSoup à partir de cette page HTML")
                 else:
-                    print("Impossible de créer l'objet BeautifulSoup à partir de cette page HTML")
-            else:
-                print("Erreur: Impossible d'accéder à l'URL indiquée")
-        file_path = loading.load_new_category(book_list, url_list)
-        print("Toutes les données se trouvent dans : " + file_path)
-    else:
-        print("Erreur: Impossible d'accéder à l'URL indiquée")
+                    print("Erreur: Impossible d'accéder à l'URL indiquée")
+            file_path = loading.load_new_category(book_list, url_list)
+            print("Toutes les données se trouvent dans : " + file_path)
+        else:
+            print("Erreur: Impossible d'accéder à l'URL indiquée")
 #
 
 main()

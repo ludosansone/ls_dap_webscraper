@@ -32,3 +32,9 @@ def get_book_url(relative_url):
 
     return url
 #
+
+def get_category_url(relative_url):
+    url = "https://books.toscrape.com/" + relative_url
+
+    return url
+#
