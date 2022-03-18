@@ -5,7 +5,7 @@ def main():
         Fonction Principale
     """
 
-    url_category = "https://books.toscrape.com/catalogue/category/books/mystery_3/index.html"
+    url_category = "https://books.toscrape.com/catalogue/category/books/sequential-art_5/index.html"
     html_category = extraction.get_page(url_category)
     if html_category:
         soup_category = extraction.get_soup(html_category)
