@@ -25,7 +25,7 @@ def main():
                     print("Impossible de créer l'objet BeautifulSoup à partir de cette page HTML")
             else:
                 print("Erreur: Impossible d'accéder à l'URL indiquée")
-        file_path = loading.load_new_category(book_list)
+        file_path = loading.load_new_category(book_list, url_list)
         print("Toutes les données se trouvent dans : " + file_path)
     else:
         print("Erreur: Impossible d'accéder à l'URL indiquée")

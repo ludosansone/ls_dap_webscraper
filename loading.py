@@ -1,8 +1,9 @@
 import csv, os
 
-def load_new_category(book_list):
+def load_new_category(book_list, url_list):
     file_name = book_list[0]['category'] + ".csv"
     file_path = "datas/" + file_name
+    url_index = 0
 
     try:
         os.mkdir('datas')
@@ -11,6 +12,7 @@ def load_new_category(book_list):
 
     with open(file_path, 'w', newline = '', encoding = 'utf-8') as csvfile:
         fieldnames = [
+            'product_page_url',
             'universal_product_code',
             'title',
             'price_including_tax',
@@ -25,6 +27,7 @@ def load_new_category(book_list):
         writer.writeheader()
         for book in book_list:
             writer.writerow({
+                'product_page_url': url_list[url_index],
                 'universal_product_code': book['universal_product_code'],
                 'title': book['title'],
                 'price_including_tax': book['price_including_tax'],
@@ -34,6 +37,7 @@ def load_new_category(book_list):
                 'category': book['category'],
                 'review_rating': book['review_rating'],
                 'image_url': book['image_url'],
-        })
+            })
+            url_index += 1
     return file_path
 #
