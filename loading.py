@@ -1,19 +1,34 @@
-import csv, os, requests, transformation
+import csv, os, transformation
+
+def create_directories():
+    """
+        Création des dossiers de base
+    """
+
+    try:
+        os.mkdir('datas')
+    except:
+        pass
+    
+    try:
+        os.mkdir('datas/csv_files')
+    except:
+        pass
+    try:
+        os.mkdir('datas/images')
+    except:
+        pass
+
+    return 0
+#
 
 def load_category_datas(book_list, url_list):
     """
         On charge les données de tous les livres de la catégorie dans le fichier csv du même nom
     """
 
-    file_name = book_list[0]['category'] + ".csv"
-    file_path = "datas/csv_files/" + file_name
+    file_path = "datas/csv_files/" + book_list[0]['category'] + ".csv"
     url_index = 0
-
-    try:
-        os.mkdir('datas')
-        os.mkdir('datas/csv_files')
-    except:
-        pass
 
     with open(file_path, 'w', newline = '', encoding = 'utf-8') as csvfile:
         fieldnames = [
@@ -49,25 +64,19 @@ def load_category_datas(book_list, url_list):
     return file_path
 #
 
-def load_category_images(book_list):
+def load_book_image(book_image, book_title, book_category):
     """
-        On charge les images de tous les livres de la catégorie dans le dossier du même nom
+        On charge l'image du livre dans un fichier portant le nom du livre, dans un dossier portant le nom de sa catégorie
     """
 
-    dir_name = book_list[0]['category'] + "/"
-    dir_path = "datas/images/" + dir_name
+    dir_path = "datas/images/" + book_category + "/"
 
     try:
-        os.mkdir('datas/images')
+        os.mkdir('datas/images/' + book_category)
     except:
         pass
-    os.mkdir('datas/images/' + dir_name)
 
-    for book in book_list:
-        book_title = transformation.get_valid_file_name(book['title'])
-
-        jpgfile = open(dir_path + book_title + ".jpg", 'wb')
-        file = requests.get(book['image_url'])
-        jpgfile.write(file.content)
-        jpgfile.close()
+    book_title = transformation.get_valid_file_name(book_title)
+    with open(dir_path + book_title + ".jpg", 'wb') as jpgfile:
+        jpgfile.write(book_image.content)
 #

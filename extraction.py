@@ -53,6 +53,17 @@ def get_book_datas(soup):
     return datas_dict
 #
 
+def get_book_image(book_image_url):
+    """
+        On télécharge l'image du livre à partir de l'url placé en argument
+    """
+
+    book_image = requests.get(book_image_url)
+
+    return book_image
+#
+
+
 def get_urls_category(soup, index_url):
     """
         On extrait toutes les urls de la catégorie, à partir de l'objet BeautifulSoup placée en argument
