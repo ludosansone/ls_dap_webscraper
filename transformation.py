@@ -58,3 +58,16 @@ def get_category_url(relative_url):
 
     return url
 #
+
+def get_valid_file_name(name):
+    valid_name = name.replace(' ', '_')\
+    .replace(':', '')\
+    .replace(',', '')\
+    .replace('/', '')\
+    .replace('?', '')\
+    .replace('"', '')\
+    .replace('&', '')\
+    .replace('*', '')
+
+    return valid_name
+#
