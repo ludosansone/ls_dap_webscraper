@@ -15,7 +15,7 @@ def get_page(url):
 
 def get_soup(html_page):
     """
-        On converti la page html en un objet BeautifulSoup
+        On crée un objet BeautifulSoup à partir de la page html placée en argument
         Par ici la bonne soupe
     """
 
@@ -28,7 +28,7 @@ def get_soup(html_page):
 
 def get_book_datas(soup):
     """
-        On extrait les données à partir de l'objet BeautifulSoup placé en paramètre, en opérant une transformation si nécessaire
+        On extrait les données du livre à partir de l'objet BeautifulSoup placé en paramètre, en opérant une transformation si nécessaire
     """
 
     datas_dict = dict()
@@ -55,7 +55,9 @@ def get_book_datas(soup):
 
 def get_urls_category(soup, index_url):
     """
-        On récupère toutes les URLs d'une catégorie
+        On extrait toutes les urls de la catégorie, à partir de l'objet BeautifulSoup placée en argument
+        Si nécessaire, on parcourt toutes les pages de la catégorie
+        On utilise l'url de l'index de la catégorie, placé en argument, pour recréer les urls absoluts
     """
 
     has_a_next_page = True
@@ -77,6 +79,10 @@ def get_urls_category(soup, index_url):
 #
 
 def get_all_categories(soup):
+    """
+        On extrait les urls de toutes les catégories du site, à partir de l'objet BeautifulSoup placé en argument
+    """
+
     side_categories = soup.find('div', class_ = 'side_categories').ul.li.ul
     category_list = side_categories.find_all('li')
     category_urls = []
