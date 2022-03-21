@@ -8,7 +8,6 @@ def get_number_available(data):
         substring = substring.replace('(', '')
         if (substring.isnumeric()):
             return substring
-    return 0
 #
 
 def get_star_number(data):
@@ -29,7 +28,7 @@ def get_star_number(data):
 
 def get_image_url(relative_url):
     """
-        On crée l'url absolut de l'image, à partir de son url relative
+        On crée l'url absolue de l'image, à partir de son url relative
     """
 
     image_url = relative_url.replace('/../..', '')
@@ -40,7 +39,7 @@ def get_image_url(relative_url):
 
 def get_book_url(relative_url):
     """
-        On crée l'url absolut du livre, , à partir de son url relative
+        On crée l'url absolue du livre, , à partir de son url relative
     """
 
     url = relative_url.replace('../../../', '')
@@ -60,6 +59,10 @@ def get_category_url(relative_url):
 #
 
 def get_valid_file_name(name):
+    """
+        On retire certains caractères de name, pour en faire un nom de fichier valide
+    """
+
     valid_name = name.replace(' ', '_')\
     .replace(':', '')\
     .replace(',', '')\

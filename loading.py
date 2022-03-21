@@ -18,8 +18,6 @@ def create_directories():
         os.mkdir('datas/images')
     except:
         pass
-
-    return 0
 #
 
 def load_category_datas(book_list, url_list):
@@ -43,7 +41,7 @@ def load_category_datas(book_list, url_list):
             'review_rating',
             'image_url'
         ]
-        writer = csv.DictWriter(csvfile    , fieldnames = fieldnames, quoting = csv.QUOTE_NONNUMERIC)
+        writer = csv.DictWriter(csvfile, fieldnames = fieldnames, quoting = csv.QUOTE_NONNUMERIC)
         writer.writeheader()
         for book in book_list:
             book['product_description']  = book['product_description'].replace('"', '')

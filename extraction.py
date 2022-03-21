@@ -63,12 +63,11 @@ def get_book_image(book_image_url):
     return book_image
 #
 
-
 def get_urls_category(soup, index_url):
     """
         On extrait toutes les urls de la catégorie, à partir de l'objet BeautifulSoup placée en argument
         Si nécessaire, on parcourt toutes les pages de la catégorie
-        On utilise l'url de l'index de la catégorie, placé en argument, pour recréer les urls absoluts
+        On utilise l'url de l'index de la catégorie, placé en argument, pour recréer les urls absolues
     """
 
     has_a_next_page = True
