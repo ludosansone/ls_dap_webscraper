@@ -15,11 +15,11 @@ Attention, nous partons du principe que les paquets pip et venv sont bien instal
 
 2- Déplacez-vous à la racine du dossier ls_dap_webscraper, à l'aide de la commande cd
 
-3- Pour créer l'environnement virtuel, saisissez la commande : python -m venv env
+3- Pour créer l'environnement virtuel, saisissez la commande : `python -m venv env`
 
-4- Pour démarrer ce dernier, saisissez la commande : env\Scripts\activate
+4- Pour démarrer ce dernier, saisissez la commande : `env\Scripts\activate`
 
-5- Pour y installer les paquets nécessaires à la bonne exécution du script, saisissez la commande : pip install -r requierments.txt
+5- Pour y installer les paquets nécessaires à la bonne exécution du script, saisissez la commande : `pip install -r requirements.txt`
 
 
 ### Installation sous Linux ou MacOSX
@@ -28,16 +28,17 @@ Attention, nous partons du principe que les paquets pip et venv sont bien instal
 
 2- Déplacez-vous à la racine du dossier ls_dap_webscraper, à l'aide de la commande cd
 
-3- Pour créer l'environnement virtuel, saisissez la commande : python -m venv env
+3- Pour créer l'environnement virtuel, saisissez la commande : `python -m venv env`
 
-4- Pour démarrer ce dernier, saisissez la commande : source env/bin/activate
+4- Pour démarrer ce dernier, saisissez la commande : `source env/bin/activate`
 
-5- Pour y installer les paquets nécessaires à la bonne exécution du script, saisissez la commande : pip install -r requierments.txt
+
+5- Pour y installer les paquets nécessaires à la bonne exécution du script, saisissez la commande : `pip install -r requirements.txt`
 
 
 ## Exécution du script
 
-Une fois l'environnement virtuel installé et démarré, vous pouvez exécuter le script avec la commande : python main.py
+Une fois l'environnement virtuel installé et démarré, vous pouvez exécuter le script avec la commande : `python main.py`
 
 ## Résultats
 
