@@ -11,7 +11,6 @@ def get_page(url):
         return response.text
     except:
         return False
-#
 
 def get_soup(html_page):
     """
@@ -24,7 +23,6 @@ def get_soup(html_page):
         return soup
     except:
         return False
-#
 
 def get_book_datas(soup):
     """
@@ -51,7 +49,6 @@ def get_book_datas(soup):
     datas_dict['image_url'] = transformation.get_image_url(datas_dict['image_url'])
 
     return datas_dict
-#
 
 def get_book_image(book_image_url):
     """
@@ -61,7 +58,6 @@ def get_book_image(book_image_url):
     book_image = requests.get(book_image_url)
 
     return book_image
-#
 
 def get_urls_category(soup, index_url):
     """
@@ -86,7 +82,6 @@ def get_urls_category(soup, index_url):
         else:
             has_a_next_page = False
     return absolut_url_list
-#
 
 def get_all_categories(soup):
     """
@@ -101,4 +96,3 @@ def get_all_categories(soup):
         category_url = transformation.get_category_url(category.a['href'])
         category_urls.append(category_url)
     return category_urls
-#

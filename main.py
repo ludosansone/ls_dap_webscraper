@@ -47,6 +47,5 @@ def main():
         print(f"Vous avez extré les données de {total_book_number} livres")
     else:
         print("Erreur: Impossible d'accéder à l'URL indiquée")
-#
 
 main()
