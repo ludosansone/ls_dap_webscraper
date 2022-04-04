@@ -8,7 +8,6 @@ def get_number_available(data):
         substring = substring.replace('(', '')
         if (substring.isnumeric()):
             return substring
-#
 
 def get_star_number(data):
     """
@@ -24,7 +23,6 @@ def get_star_number(data):
     }
 
     return rating_dict[data]
-#
 
 def get_image_url(relative_url):
     """
@@ -35,7 +33,6 @@ def get_image_url(relative_url):
     image_url = "https://books.toscrape.com/" + relative_url
 
     return image_url
-#
 
 def get_book_url(relative_url):
     """
@@ -46,7 +43,6 @@ def get_book_url(relative_url):
     url = "https://books.toscrape.com/catalogue/" + url
 
     return url
-#
 
 def get_category_url(relative_url):
     """
@@ -56,7 +52,6 @@ def get_category_url(relative_url):
     url = "https://books.toscrape.com/" + relative_url
 
     return url
-#
 
 def get_valid_file_name(name):
     """
@@ -73,4 +68,3 @@ def get_valid_file_name(name):
     .replace('*', '')
 
     return valid_name
-#

@@ -30,9 +30,12 @@ def main():
                             datas_dict = extraction.get_book_datas(soup_book)
                             print(f"{datas_dict['title']} (données extraites)")
                             book_image = extraction.get_book_image(datas_dict['image_url'])
-                            print("Image extraite")
-                            loading.load_book_image(book_image, datas_dict['title'], datas_dict['category'])
-                            print("Image enregistrée")
+                            if book_image:
+                                print("Image extraite")
+                                loading.load_book_image(book_image, datas_dict['title'], datas_dict['category'])
+                                print("Image enregistrée")
+                            else:
+                                print("Image Introuvable")
                             book_list.append(datas_dict)
                             total_book_number += 1
                             

@@ -18,7 +18,6 @@ def create_directories():
         os.mkdir('datas/images')
     except:
         pass
-#
 
 def load_category_datas(book_list, url_list):
     """
@@ -45,7 +44,6 @@ def load_category_datas(book_list, url_list):
         writer.writeheader()
         for book in book_list:
             book['product_description']  = book['product_description'].replace('"', '')
-
             writer.writerow({
                 'product_page_url': url_list[url_index],
                 'universal_product_code': book['universal_product_code'],
@@ -60,7 +58,6 @@ def load_category_datas(book_list, url_list):
             })
             url_index += 1
     return file_path
-#
 
 def load_book_image(book_image, book_title, book_category):
     """
@@ -77,4 +74,3 @@ def load_book_image(book_image, book_title, book_category):
     book_title = transformation.get_valid_file_name(book_title)
     with open(dir_path + book_title + ".jpg", 'wb') as jpgfile:
         jpgfile.write(book_image.content)
-#

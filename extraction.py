@@ -55,9 +55,11 @@ def get_book_image(book_image_url):
         On télécharge l'image du livre à partir de l'url placé en argument
     """
 
-    book_image = requests.get(book_image_url)
-
-    return book_image
+    try:
+        book_image = requests.get(book_image_url)
+        return book_image
+    except:
+        return False
 
 def get_urls_category(soup, index_url):
     """
